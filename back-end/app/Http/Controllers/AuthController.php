@@ -27,13 +27,14 @@ class AuthController extends Controller
         ]);
 
         // Generate token
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('authToken')->accessToken;
 
         // Return response
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user,
+            'accessToken' => $token,
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
             'message' => 'Registration successful'
         ]);
     }
@@ -58,13 +59,14 @@ class AuthController extends Controller
         }
 
         // Generate token
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('authToken')->accessToken;
 
         // Return response
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user,
+            'accessToken' => $token,
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
             'message' => 'login successful'
         ]);
     }
