@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import NewsArticle from './newsarticle.component';
 import Article from '../types/article.type';
+import { Row, Col } from 'react-bootstrap';
 
 type State = {
   articles: Article[];
@@ -39,16 +40,25 @@ class News extends Component<{}, State> {
   }
 
   render() {
-    const { articles, error } = this.state;
+    const { articles } = this.state;
 
-    if (error) {
-      return <div>Error: {error}</div>;
+    // Split articles into chunks of 3
+    const rows = [];
+    for (let i = 0; i < articles.length; i += 3) {
+      const rowArticles = articles.slice(i, i + 3);
+      rows.push(rowArticles);
     }
 
     return (
       <div>
-        {articles.map((article: Article, index: number) => (
-          <NewsArticle key={article.id ?? index} data={article} />
+        {rows.map((rowArticles, rowIndex) => (
+          <Row key={rowIndex}>
+            {rowArticles.map((article: Article, index: number) => (
+              <Col key={article.id ?? index} xs={12} md={4}>
+                <NewsArticle data={article} />
+              </Col>
+            ))}
+          </Row>
         ))}
       </div>
     );

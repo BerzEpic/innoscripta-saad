@@ -5,18 +5,17 @@ const Preferences = () => {
   const [preferences, setPreferences] = useState({ sources: [], categories: [], authors: [] });
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/preferences') // replace with your backend endpoint
+    axios.get('http://localhost:8000/api/preferences') 
       .then(response => setPreferences(response.data));
   }, []);
 
   const handleSave = () => {
-    axios.put('/api/preferences', preferences) // replace with your backend endpoint
+    axios.put('/api/preferences', preferences) 
       .then(response => console.log(response));
   };
 
   return (
     <div>
-      {/* create form fields for sources, categories, authors */}
       <button onClick={handleSave}>Save Preferences</button>
     </div>
   );
