@@ -33,10 +33,11 @@ Open your web browser and visit: `http://localhost:8081`
 ## Directory Structure
 The project directory structure is as follows:
 
-├── back-end/    				  # Laravel backend project directory
-├── client/      				  # React frontend project directory
-├── docker-compose.yml            # Docker Compose configuration file
-└── README.md                     # Project documentation
+back-end/    				  # Laravel backend project directory
+client/      				  # React frontend project directory
+docker-compose.yml            # Docker Compose configuration file
+README.md                     # Project documentation
+
 back-end: This directory contains the Laravel backend project. 
 
 client: This directory contains the React frontend project.
