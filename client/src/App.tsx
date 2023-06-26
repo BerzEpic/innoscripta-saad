@@ -8,10 +8,8 @@ import IUser from './types/user.type';
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
-import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import News from "./components/news.component";
-import Search from "./components/search.component";
 import Preferences from "./components/preference.component";
 
 import EventBus from "./common/EventBus";
@@ -64,13 +62,6 @@ class App extends Component<Props, State> {
           <Link to={"/"} className="navbar-brand">
             Inoscripta
           </Link>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-          </div>
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
@@ -81,9 +72,6 @@ class App extends Component<Props, State> {
               </li>
               <li className="nav-item">
                 <Link to={"/news"} className="nav-link">News</Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/search"} className="nav-link">Search</Link>
               </li>
               <li className="nav-item">
                 <Link to={"/preferences"} className="nav-link">Preferences</Link>
@@ -113,12 +101,10 @@ class App extends Component<Props, State> {
 
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Profile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />
-            <Route path="/search" element={<Search />} />
             <Route path="/preferences" element={<Preferences />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
