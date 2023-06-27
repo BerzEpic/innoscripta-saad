@@ -109,8 +109,6 @@ class App extends Component<Props, State> {
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
-
-        { /*<AuthVerify logOut={this.logOut}/> */}
       </div>
     );
   }

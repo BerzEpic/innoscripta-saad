@@ -23,7 +23,7 @@ class News extends Component<{}, State> {
       error: '',
       searchQuery: '',
       currentPage: 1,
-      pageSize: 20, // Change this to desired number of articles per page
+      pageSize: 20, 
       totalItems: 0,
     };
   }
@@ -64,28 +64,16 @@ class News extends Component<{}, State> {
 
   handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Fetch news articles with the updated search query
     this.setState({ currentPage: 1 }, this.fetchNewsArticles);
   };
 
   handlePaginationChange = (page: number) => {
-    this.setState({ currentPage: page }, this.forceUpdate);
+    this.setState({ currentPage: page });
   };
-
-  componentDidUpdate(prevProps: {}, prevState: State) {
-    // Check if currentPage has changed
-    if (prevState.currentPage !== this.state.currentPage) {
-      this.forceUpdate();
-    }
-  }
 
   render() {
     const { articles, error, searchQuery, currentPage, pageSize, totalItems } = this.state;
-
-    // Calculate total number of pages
     const totalPages = Math.ceil(totalItems / pageSize);
-
-    // Get the articles for the current page
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const currentArticles = articles.slice(startIndex, endIndex);

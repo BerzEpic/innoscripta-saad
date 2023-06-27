@@ -18,9 +18,7 @@ class Preference extends Component<{}, State> {
   };
 
   componentDidMount() {
-    // Fetch preferences data from your API
     this.fetchPreferences().then(() => {
-      // Fetch sources data from your API
       const userString = localStorage.getItem('user');
       const token = userString ? JSON.parse(userString).accessToken : null;
       axios
@@ -52,8 +50,9 @@ class Preference extends Component<{}, State> {
 
       const preferences = response.data;
       const splitedPref = preferences.sources.split(',');
+      const uniqueSources = Array.from(new Set(splitedPref)) as string[]; 
       this.setState({
-        selectedSources: splitedPref.filter((value: string, index: number, self: string[]) => self.indexOf(value) === index),
+        selectedSources: uniqueSources,
         byCategories: preferences.by_categories,
         byAuthors: preferences.by_authors,
       });
@@ -67,11 +66,9 @@ class Preference extends Component<{}, State> {
     const isChecked = event.target.checked;
 
     if (isChecked) {
-      const updatedSources = [...selectedSources, sourceId];
-      this.setState({ selectedSources: updatedSources });
+      this.setState({ selectedSources: [...selectedSources, sourceId] });
     } else {
-      const updatedSources = selectedSources.filter((id) => id !== sourceId);
-      this.setState({ selectedSources: updatedSources });
+      this.setState({ selectedSources: selectedSources.filter(id => id !== sourceId) });
     }
   };
 
@@ -117,7 +114,6 @@ class Preference extends Component<{}, State> {
           console.error(error);
         });
     } else {
-      // Handle the case when the user ID is not found
       console.error('User ID not found');
     }
   };
@@ -148,7 +144,7 @@ class Preference extends Component<{}, State> {
               <h5>Search By:</h5>
               <FormCheck
                   id="byCategories"
-                  name="byCategories" // Add name attribute
+                  name="byCategories" 
                   type="checkbox"
                   label="By Categories"
                   checked={byCategories}
