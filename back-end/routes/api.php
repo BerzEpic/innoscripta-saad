@@ -20,10 +20,9 @@ use App\Http\Controllers\PreferenceController;
 Route::post('auth/signup', [AuthController::class, 'register']);
 Route::post('auth/signin', [AuthController::class, 'login']);
 
-Route::get('/sources', [PreferenceController::class, 'sources']);
-
 Route::middleware('auth:api')->group(function () {
     Route::get('/news', [NewsController::class, 'getNews']);
+    Route::get('/sources', [PreferenceController::class, 'sources']);
     Route::get('/preferences/{id}', [PreferenceController::class, 'index']);
     Route::put('/preferences/{id}', [PreferenceController::class, 'update']);
 });
