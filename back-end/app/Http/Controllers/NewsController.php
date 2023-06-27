@@ -52,7 +52,10 @@ class NewsController extends Controller
         } else {
             $url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=554447ff942b4466a5e024fa91dc7f64' . ($search ? '&q=' . urlencode($search) : '');
             $response = $this->client->request('GET', $url);
-            return response()->json(json_decode($response->getBody()->getContents(), true));
+            $responseData = json_decode($response->getBody()->getContents(), true);
+            $normalizedData = $this->normalizeData(2, $responseData);
+            
+            return response()->json(['data' => $normalizedData]);
         }
     }
 
