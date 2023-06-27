@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, FormGroup, FormCheck, Button, Row, Col } from 'react-bootstrap';
+import { Form, FormCheck, Button, Row, Col } from 'react-bootstrap';
 
 type State = {
   sources: { id: string; name: string }[];
